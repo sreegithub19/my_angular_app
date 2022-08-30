@@ -1,35 +1,29 @@
+import { Component, Input, OnInit,Renderer2, Inject } from '@angular/core';
+//require('../using-require-syntax.js');
+//import '../using-import-syntax.js';
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+  `,
+  styles: [`h1 { font-family: Lato; }`]
 })
-export class AppComponent {
- count = 0;
+export class AppComponent implements OnInit  {
+
   constructor(
-    private _renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document
-  ) {}
+        private _renderer2: Renderer2, 
+        @Inject(DOCUMENT) private _document: Document
+  ) { }
 
-  ngOnInit() {
-    
-    this.loadScriptByAngularWay(
-      'alert("Dynamic loaded SSR")',
-      console.log('hi')
-    );
+  public ngOnInit() {
+        let script = this._renderer2.createElement('script');
+        script.type = `text/javascript`;
+        script.text = `
+            alert('hi')
+        `;
+
+  this._renderer2.appendChild(this._document.body, script);
   }
 
-   
-  public loadScriptByAngularWay(text,afterload) {
-    let script = this._renderer2.createElement('script');
-    script.type = `text/javascript`;
-    script.text = text;
-
-    this._renderer2.appendChild(this._document.body, script);
-    script.addEventListener('load', () => {
-      afterload(script);
-    });
-  }
 }
