@@ -4,17 +4,18 @@ import { Component, AfterViewInit, Input, OnInit,Renderer2, Inject } from '@angu
 import { DOCUMENT } from '@angular/common';
 import {Injectable } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
-  template: `
-  `,
-  styles: [`h1 { font-family: Lato; }`]
+  template: ``,
+  //styles: [`h1 { font-family: Lato; }`]
 })
+
 
 @Injectable()
 export class AppComponent {
   constructor(@Inject(DOCUMENT) private document: any) {
-      //document.write("hi");   // Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
+      document.write("hi");   // Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
       document.getElementById("root").innerHTML =`<h1 onclick = "document.write(\`
       hi document
       hello there
@@ -22,25 +23,9 @@ export class AppComponent {
       <script>alert('hi')</script>
       <script>alert('hi again')</script>
       <script>document.write('hi again')</script>
-      
       \`)">hi</h1>
       `;
     }
 }
 
-
-//import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-root',
-//   templateUrl: './app.component.html',
-//   styleUrls: ['./app.component.css']
-// })
-// export class AppComponent{
-
-//   htmlContent = `
-//   <h1>Hello Angular 14!</h1>
-//   `;
-//   constructor() { }
-// }
 
