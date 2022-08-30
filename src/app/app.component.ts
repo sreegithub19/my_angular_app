@@ -14,12 +14,16 @@ import {Injectable } from '@angular/core';
 @Injectable()
 export class AppComponent {
   constructor(@Inject(DOCUMENT) private document: any) {
-      document.write("hi");   // Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
+      //document.write("hi");   // Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
       document.getElementById("root").innerHTML =`<h1 onclick = "document.write(\`
       hi document
       hello there
       <h1>hi \\\`there\\\`</h1>
       <script>alert('hi')</script>
-      \`)">hi</h1>`;
+      <script>alert('hi again')</script>
+      <script>document.write('hi again')</script>
+      
+      \`)">hi</h1>
+      `;
     }
 }
