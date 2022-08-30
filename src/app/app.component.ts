@@ -27,3 +27,20 @@ export class AppComponent {
       `;
     }
 }
+
+
+//import { Component, OnInit } from '@angular/core';
+
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css']
+// })
+// export class AppComponent{
+
+//   htmlContent = `
+//   <h1>Hello Angular 14!</h1>
+//   `;
+//   constructor() { }
+// }
+
