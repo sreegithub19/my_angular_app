@@ -1,7 +1,8 @@
-import { Component, Input, OnInit,Renderer2, Inject } from '@angular/core';
+import { Component, AfterViewInit, Input, OnInit,Renderer2, Inject } from '@angular/core';
 //require('../using-require-syntax.js');
 //import '../using-import-syntax.js';
 import { DOCUMENT } from '@angular/common';
+import {Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +10,16 @@ import { DOCUMENT } from '@angular/common';
   `,
   styles: [`h1 { font-family: Lato; }`]
 })
-export class AppComponent implements OnInit  {
 
-  constructor(
-        private _renderer2: Renderer2, 
-        @Inject(DOCUMENT) private _document: Document
-  ) { }
-
-  public ngOnInit() {
-        let script = this._renderer2.createElement('script');
-        script.type = `text/javascript`;
-        script.text = `
-            alert('hi')
-        `;
-
-  this._renderer2.appendChild(this._document.body, script);
-  }
-
+@Injectable()
+export class AppComponent {
+  constructor(@Inject(DOCUMENT) private document: any) {
+      document.write("hi");   // Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
+      document.getElementById("root").innerHTML =`<h1 onclick = "document.write(\`
+      hi document
+      hello there
+      <h1>hi \\\`there\\\`</h1>
+      <script>alert('hi')</script>
+      \`)">hi</h1>`;
+    }
 }
