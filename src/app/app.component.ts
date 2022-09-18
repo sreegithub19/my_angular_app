@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   }
 
   initMap() {
+    
     document.getElementById("calculator").addEventListener("click", function () {
   document.write(`
       <html>
