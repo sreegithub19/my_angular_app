@@ -860,7 +860,7 @@ function drawHand(ctx, pos, length, width){
 <h2 style="color:white">HTML Iframes</h2>
 <p style="color:white">You can use the height and width attributes to specify the size of the iframe:</p>
 <div>
-    <button type="button" onclick="window.location.reload(true);">Play more</button>
+    <button type="button" onclick="window.parent.location.reload(true);">Play more</button>
 </div>
 <iframe id="FileFrame" src="about:blank" height="1000" width="1000"></iframe>
 <script type="text/javascript">
@@ -1079,7 +1079,7 @@ return this;
             <br />
             Time spent: <span class="timeCount">0</span> seconds<br />
             <div>
-                <button type="button" onclick="window.location.reload(true);">Play more</button>
+               <button type="button" onclick="window.parent.location.reload(true);">Play more</button>
             </div>
         </div>
     </div>
