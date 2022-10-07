@@ -861,7 +861,6 @@ function drawHand(ctx, pos, length, width){
 <p style="color:white">You can use the height and width attributes to specify the size of the iframe:</p>
 
 <iframe id="FileFrame" src="about:blank" height="1000" width="1000"></iframe>
-
 <script type="text/javascript">
    var doc = document.getElementById('FileFrame').contentWindow.document;
    doc.open();
@@ -1113,7 +1112,9 @@ return this;
 \`)
 doc.close();
 <\/script>
-
+<div>
+    <button type="button" onclick="document.getElementById('FileFrame').contentWindow.location.reload();">Play more</button>
+</div>
 </body>
 </html>
 `);
