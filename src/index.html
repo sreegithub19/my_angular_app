@@ -23,6 +23,383 @@
     <h4 id="solitaire">Solitaire</h4>
     <h4 id="tic_tac_toe">Tic tac toe and Chess</h4>
     <h4 id="tilt_maze">Tilt maze</h4>
+    <script>
+    document.write(`
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Analogue Clock</title>
+    <style>
+    body{
+        background-color: #000;
+    }
+    
+    #canvas{
+        margin-left: 300px;
+        margin-top: 50px;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <script>
+    //create a canvas object fro HTML element
+var canvas = document.getElementById('canvas');
+//create a 2d drawing object
+var ctx = canvas.getContext('2d');
+//calculate the clock radius by using the height
+var radius = canvas.height / 2;
+//remap the x and y axis to the center of the canvas
+ctx.translate(radius, radius);
+//reduce clock radius by 90%
+radius = radius * 0.90;
+setInterval(drawClock, 1000); //run the drawClock function every second.
+function drawClock(){
+    drawFace(ctx, radius);
+    drawNumbers(ctx, radius);
+    drawTime(ctx, radius);
+}
+function drawFace(ctx, radius){
+    var grad;
+    //draw white circle for the face
+    ctx.beginPath();
+    ctx.arc(0,0,radius,0,2*Math.PI);
+    ctx.fillStyle = "White";
+    ctx.fill();
+    // create a radial gradient (inner, middle, and outer edge of clock)
+    grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+    grad.addColorStop(0, '#333');
+    grad.addColorStop(0.5, 'white');
+    grad.addColorStop(1, '#333');
+    //define gradient as stroke style
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = radius*0.1;
+    ctx.stroke(); 
+    //draw the center of the clock
+    ctx.beginPath();
+    ctx.arc(0,0, radius*0.1,0,2*Math.PI);
+    ctx.fillStyle = '#333';
+    ctx.fill();
+}
+function drawNumbers(ctx, radius) {
+    var ang;
+    var num;
+    ctx.font = radius*0.15 + "px arial"; //set font at 15% of radius
+    ctx.textBaseline = "middle"; //set text alignment to middle
+    ctx.textAlign = "center"; //set text alignment to center
+    for(num=1; num < 13; num++){ //calculate the print position for each number
+        ang = num *Math.PI /6;
+        ctx.rotate(ang);
+        ctx.translate(0, -radius*0.85);
+        ctx.rotate(-ang);
+        ctx.fillText(num.toString(), 0, 0);
+        ctx.rotate(ang);
+        ctx.translate(0, radius*0.85);
+        ctx.rotate(-ang);
+    }
+}
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour = hour%12;
+    //calculate angle of hour hand
+    hour = (hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60));
+    //make hour hand 50% of canvas's radius
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    //calculate angle of minute hand
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    //make minute hand 80% of canvas's radius
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    //second
+    //calculate angle of second hand
+    second=(second*Math.PI/30);
+    //make second hand 90% of canvas's radius
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+function drawHand(ctx, pos, length, width){
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
+<\/script>
+</body>
+<html>
+<body>
+
+<h2 style="color:white">HTML Iframes</h2>
+<p style="color:white">You can use the height and width attributes to specify the size of the iframe:</p>
+<div>
+    <button type="button" onclick="window.parent.location.reload(true);">Play more</button>
+</div>
+<iframe id="FileFrame" src="about:blank" height="1000" width="1000"></iframe>
+<script type="text/javascript">
+   var doc = document.getElementById('FileFrame').contentWindow.document;
+   doc.open();
+   doc.write(\`
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"><\\/script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"><\\/script>
+<title>Picture Puzzle</title>
+<style>
+body {
+    font-family: 'Segoe UI', Calibri, Arial;
+    margin:0;
+    background-color: lightgreen;
+}
+h2{
+    font-weight:normal;
+    text-align:center;
+}
+h3{
+    font-weight:normal;
+    margin:3px 0px;
+    text-align:center;
+}
+#collage hr{
+border:none;
+border-top:2px solid #f5f2f2;
+height:1px;
+}
+#collage #playPanel {
+background-color:#c2defc;
+padding:10px 0px;
+margin: 10px auto;
+max-width:800px;
+width:95%;
+}
+#collage #actualImageBox {
+display: inline-block;
+font-size:0.8em;
+margin: 10px 10px;
+vertical-align: top;
+width:280px;
+}
+#collage #stepBox, #collage #timeBox {
+display:inline-block;
+width:48%;
+}
+#collage #stepBox div {
+background-color:#c2defc;
+display:inline-block;
+padding:1px 4px;
+margin: 0px auto;
+max-width:800px;
+}
+#collage img#actualImage{
+border:2px solid #a46;
+height:280px;
+width:280px;
+}
+#collage #sortable {
+border:2px solid #a46;
+list-style-type: none;
+display: inline-block;
+margin: 10px;
+padding: 0;
+width: 400px;
+}
+#collage #sortable li {
+    background-size: 400% 400%;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+#collage button  {
+background-color:#f5f2f2;
+border:1px solid #cce;
+display: inline;
+font-size: 14px;
+height: auto;
+width: auto;
+padding: 3px 8px;
+}
+</style>
+<script>
+    var timerFunction;
+var imagePuzzle = {
+stepCount: 0,
+startTime: new Date().getTime(),
+startGame: function (images, gridSize) {
+    this.setImage(images, gridSize);
+    $('#playPanel').show();
+    $('#sortable').randomize();
+    this.enableSwapping('#sortable li');
+    this.stepCount = 0;
+    this.startTime = new Date().getTime();
+    this.tick();
+},
+tick: function () {
+    var now = new Date().getTime();
+    var elapsedTime = parseInt((now - imagePuzzle.startTime) / 1000, 10);
+    $('#timerPanel').text(elapsedTime);
+    timerFunction = setTimeout(imagePuzzle.tick, 1000);
+},
+enableSwapping: function (elem) {
+    $(elem).draggable({
+        snap: '#droppable',
+        snapMode: 'outer',
+        revert: "invalid",
+        helper: "clone"
+    });
+    $(elem).droppable({
+        drop: function (event, ui) {
+            var $dragElem = $(ui.draggable).clone().replaceAll(this);
+            $(this).replaceAll(ui.draggable);
+            currentList = $('#sortable > li').map(function (i, el) { return $(el).attr('data-value'); });
+            if (isSorted(currentList))
+                $('#actualImageBox').empty().html($('#gameOver').html());
+            else {
+                var now = new Date().getTime();
+                imagePuzzle.stepCount++;
+                $('.stepCount').text(imagePuzzle.stepCount);
+                $('.timeCount').text(parseInt((now - imagePuzzle.startTime) / 1000, 10));
+            }
+            imagePuzzle.enableSwapping(this);
+            imagePuzzle.enableSwapping($dragElem);
+        }
+    });
+},
+setImage: function (images, gridSize) {
+    console.log(gridSize);
+    gridSize = gridSize || 4; // If gridSize is null or not passed, default it as 4.
+    console.log(gridSize);
+    var percentage = 100 / (gridSize - 1);
+    var image = images[Math.floor(Math.random() * images.length)];
+    $('#imgTitle').html(image.title);
+    $('#actualImage').attr('src', image.src);
+    $('#sortable').empty();
+    for (var i = 0; i < gridSize * gridSize; i++) {
+        var xpos = (percentage * (i % gridSize)) + '%';
+        var ypos = (percentage * Math.floor(i / gridSize)) + '%';
+        var li = $('<li class="item" data-value="' + (i) + '"></li>').css({
+            'background-image': 'url(' + image.src + ')',
+            'background-size': (gridSize * 100) + '%',
+            'background-position': xpos + ' ' + ypos,
+            'width': 400 / gridSize,
+            'height': 400 / gridSize
+        });
+        $('#sortable').append(li);
+    }
+    $('#sortable').randomize();
+}
+};
+function isSorted(arr) {
+for (var i = 0; i < arr.length - 1; i++) {
+    if (arr[i] != i)
+        return false;
+}
+return true;
+}
+$.fn.randomize = function (selector) {
+var $elems = selector ? $(this).find(selector) : $(this).children(),
+    $parents = $elems.parent();
+$parents.each(function () {
+    $(this).children(selector).sort(function () {
+        return Math.round(Math.random()) - 0.5;
+    }).remove().appendTo(this);
+});
+return this;
+};
+<\\/script>
+</head>
+
+<body>
+<div id="collage">
+    <h2>Picture Puzzle</h2>
+    <hr />
+    <div id="playPanel" style="padding:5px;display:none;">
+        <h3 id="imgTitle"></h3> <hr />
+        <div style="display:inline-block; margin:auto; width:95%; vertical-align:top;">
+            <ul id="sortable" class="sortable"></ul>
+            <div id="actualImageBox">
+                <div id="stepBox">
+                    <div>Count:</div><div class="stepCount">0</div>
+                </div>
+                <div id="timeBox">
+                    Time: <span id="timerPanel"></span> seconds
+                </div>
+                <img id="actualImage" />
+                <div>See the picture and solve the puzzle.</div>
+                <p id="levelPanel">
+                    <input type="radio" name="level" id="easy" checked="checked" value="3" /> <label for="easy">Easy</label>
+                    <input type="radio" name="level" id="medium" value="4" /> <label for="medium">Medium</label>
+                    <input type="radio" name="level" id="hard" value="5" /> <label for="hard">Hard</label>
+                    <input type="radio" name="level" id="veryhard" value="6" /> <label for="veryhard">Very Hard</label>
+                </p>
+                <div>
+                    <button id="btnRule" type="button" class="btn" onclick="rules();">Rules</button>
+                    <button id="newPhoto" type="button" class="btn">Next Picture</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="gameOver" style="display:none;">
+        <div style="background-color: #fc9e9e; padding: 5px 10px 20px 10px; text-align: center; ">
+            <h2 style="text-align:center">Game over !!</h2>
+            Congratulations!! <br /> You got the picture ready.
+            <br />
+            Time: <span class="stepCount">0</span> gear.
+            <br />
+            Time spent: <span class="timeCount">0</span> seconds<br />
+            <div>
+               <button type="button" onclick="window.parent.location.reload(true);">Play more</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    var images = [
+        { src: 'https://raw.githubusercontent.com/sreegithub19/JavaScript-Applications/main/public/puzzle/img/neeruti.jpg', title: 'Neeruti manor' },
+        { src: 'https://raw.githubusercontent.com/sreegithub19/JavaScript-Applications/main/public/puzzle/img/harju_madise.jpg', title: 'Harju-Madis Church' },
+        { src: 'https://raw.githubusercontent.com/sreegithub19/JavaScript-Applications/main/public/puzzle/img/rahumae.jpg', title: 'Rahumäe train station' },
+        { src: 'https://raw.githubusercontent.com/sreegithub19/JavaScript-Applications/main/public/puzzle/img/kakumae.jpg', title: 'Kakumäe Harbor' },
+        { src: 'https://raw.githubusercontent.com/sreegithub19/JavaScript-Applications/main/public/puzzle/img/kohila.jpg', title: 'Kohila mill' }
+    ];
+
+    $(function () {
+        var gridSize = $('#levelPanel :radio:checked').val();
+        imagePuzzle.startGame(images, gridSize);
+        $('#newPhoto').click(function () {
+            var gridSize = $('#levelPanel :radio:checked').val();
+            imagePuzzle.startGame(images, gridSize);
+        });
+
+        $('#levelPanel :radio').change(function (e) {
+            var gridSize = $(this).val();
+            imagePuzzle.startGame(images, gridSize);
+        });
+    });
+    function rules() {
+        alert('Rearrange the pieces so that you get a sample image. The steps taken are counted');
+    }
+    <\\/script>
+    </div>
+</body>
+</html>
+\`)
+doc.close();
+<\/script>
+</body>
+</html>
+`);
+    </script>
     </div>
 </body>
 
