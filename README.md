@@ -1,3 +1,15 @@
+Versions used:
+
+- Angular CLI: 14.1.3
+- Node: 16.10.0
+- Package Manager: npm 7.24.0
+
+Steps to run:
+
+- npm init
+- npm install
+- ng serve
+
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
@@ -26,7 +38,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-
 Deployment links:
+
 1. (Master branch): https://my-angular-app-rust.vercel.app/
 2. (Main branch): https://my-angular-q3ir60od6-sreegithub19.vercel.app/
