@@ -1,3 +1,15 @@
+Versions used:
+
+- Angular CLI: 14.1.3
+- Node: 16.10.0
+- Package Manager: npm 7.24.0
+
+Steps to run:
+
+- npm init (remove the extra lines that appear in package.json)
+- npm install
+- ng serve
+
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
