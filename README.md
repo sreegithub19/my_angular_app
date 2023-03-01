@@ -42,3 +42,8 @@ Deployment links:
 
 1. (Master branch): https://my-angular-app-rust.vercel.app/
 2. (Main branch): https://my-angular-q3ir60od6-sreegithub19.vercel.app/
+
+Demo:
+https://user-images.githubusercontent.com/55496113/222205692-e5c91b9c-ac81-4d95-8b31-b265b1eb1575.mp4
+
+
