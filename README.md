@@ -46,4 +46,6 @@ Deployment links:
 Demo:
 https://user-images.githubusercontent.com/55496113/222205692-e5c91b9c-ac81-4d95-8b31-b265b1eb1575.mp4
 
+Git:
 
+- git add . && git commit -m "C" && git push origin master

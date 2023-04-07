@@ -6489,7 +6489,6 @@ a:visited {
 }
 
 @media (min-height: 425px) {
-  /** Youtube logo by https://codepen.io/alvaromontoro */
   #youtube {
     z-index: 2;
     display: block;
@@ -6572,12 +6571,6 @@ a:visited {
       <p>Move every ball to the center. Ready for hard mode? Press H</p>
     </div>
   </div>
-</div>
-<a id="youtube" href="https://youtu.be/bTk6dcAckuI" target="_blank">
-  <span>See how this game was made</span>
-</a>
-<div id="youtube-card">
-  How to simulate ball movement in a maze with JavaScript
 </div>
 <script>
     /*
