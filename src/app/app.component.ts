@@ -7238,10 +7238,7 @@ function main(timestamp) {
       noteElement.innerHTML = \`Congrats, you did it!
         \${!hardMode ? "<p>Press H for hard mode</p>" : ""}
         <p>
-          Follow me
-          <a href="https://twitter.com/HunorBorbely" , target="_blank"
-            >@HunorBorbely</a
-          >
+          
         </p>\`;
       noteElement.style.opacity = 1;
       gameInProgress = false;
