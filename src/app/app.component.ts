@@ -6573,13 +6573,6 @@ a:visited {
   </div>
 </div>
 <script>
-    /*
-
-If you want to know how this game works, you can find a source code walkthrough video here: https://youtu.be/bTk6dcAckuI
-
-Follow me on twitter for more: https://twitter.com/HunorBorbely
-
-*/
 
 Math.minmax = (value, limit) => {
   return Math.max(Math.min(value, limit), -limit);
