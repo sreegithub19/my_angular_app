@@ -23,7 +23,6 @@ jobs:
 
 ############################### Angular ###############################
       - name: Build Application docker
-        working-directory: ./java/spring_boot_web_apps_gradle/java_applications
         run: |
           docker build -t my-angular-app .
           # docker run -p 8080:80 my-angular-app
